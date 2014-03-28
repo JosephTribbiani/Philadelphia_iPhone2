@@ -19,7 +19,7 @@
 
 #define kAnimationDuration 0.2
 
-@interface PHScheduleViewController () <UICollectionViewDataSource, PHSelectStationViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDelegate>
+@interface PHScheduleViewController () <UICollectionViewDataSource, PHSelectStationViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDelegate, PHScheduleModelDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView* tripCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView* hoursCollectionView;
@@ -77,6 +77,11 @@
     UICollectionViewFlowLayout *weekdaysViewlayout = (UICollectionViewFlowLayout*)self.weekdaysCollectionView.collectionViewLayout;
     weekdaysViewlayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
     self.weekdaysCollectionView.allowsMultipleSelection = YES;
+    
+    NSInteger dayToSelect = self.model.selectedDay;
+    
+    [self.weekdaysCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:dayToSelect inSection:1] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +94,7 @@
     if (_model == nil)
     {
         _model = [PHScheduleModel new];
+        _model.delegate = self;
     }
     return _model;
 }
@@ -102,9 +108,9 @@
     {
         cell = [self.tripCollectionView dequeueReusableCellWithReuseIdentifier:@"tripsCollectionViewCell" forIndexPath:indexPath];
         NSDictionary* train = [self.model.trips objectAtIndex:indexPath.item];
-        ((PHTripsCollectionViewCell*)cell).startTimeLabel.text = train[@"startTime"];
-        ((PHTripsCollectionViewCell*)cell).endTimeLabel.text = train[@"endTime"];
-        ((PHTripsCollectionViewCell*)cell).durationLabel.text = train[@"trainId"];
+        ((PHTripsCollectionViewCell*)cell).departureTime = train[@"startTime"];
+        ((PHTripsCollectionViewCell*)cell).arrivalTime = train[@"endTime"];
+        ((PHTripsCollectionViewCell*)cell).duration = train[@"duration"];
     }
     else if (collectionView == self.hoursCollectionView)
     {
@@ -132,7 +138,7 @@
     }
     else
     {
-        result = 10;
+        result = [self.model.trips count];
     }
     return result;
 }
@@ -188,6 +194,13 @@
         [self.selectedWeekdayIndexes addObject:indexPath];
         [self.selectedWeekdayIndexes addObject:index1];
         [self.selectedWeekdayIndexes addObject:index2];
+
+        self.model.selectedDay = indexPath.item % 3;
+    }
+    else if (collectionView == self.hoursCollectionView)
+    {
+        
+        self.model.selectedTime = indexPath.item;
     }
 }
 
@@ -346,6 +359,13 @@
     NSAttributedString* attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:@"DINCondensed-Bold" size:17],
                                                                                                         NSForegroundColorAttributeName : [UIColor whiteColor]}];
     return attributedTitle;
+}
+
+#pragma mark - ScheduleModelDelegate
+
+- (void)shouldUpdateTrips
+{
+    [self.tripCollectionView reloadData];
 }
 
 @end

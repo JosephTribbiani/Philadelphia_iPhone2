@@ -10,6 +10,12 @@
 #import "PHStation.h"
 #import "PHLine.h"
 
+@protocol PHScheduleModelDelegate <NSObject>
+
+- (void)shouldUpdateTrips;
+
+@end
+
 @interface PHScheduleModel : NSObject
 
 @property (nonatomic, strong) PHLine* line;
@@ -23,5 +29,7 @@
 @property (nonatomic, strong) NSArray* trips;
 @property (nonatomic, strong) NSArray* weekDays;
 @property (nonatomic, strong) NSArray* hours;
+
+@property (nonatomic, weak) id<PHScheduleModelDelegate> delegate;
 
 @end

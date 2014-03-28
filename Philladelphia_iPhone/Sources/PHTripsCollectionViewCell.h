@@ -10,8 +10,9 @@
 
 @interface PHTripsCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+@property (nonatomic, copy) NSString* departureTime;
+@property (nonatomic, copy) NSString* arrivalTime;
+@property (nonatomic, copy) NSString* duration;
+
 
 @end

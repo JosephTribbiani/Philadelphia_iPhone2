@@ -55,7 +55,20 @@
 {
     NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents* components = [calendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
-    return [components weekday] - 1 ;
+    NSInteger currentDay = [components weekday];
+    if (currentDay == 1)
+    {
+        currentDay = 2;
+    }
+    else if (currentDay == 7)
+    {
+        currentDay = 1;
+    }
+    else
+    {
+        currentDay = 0;
+    }
+    return currentDay;
 }
 
 - (NSArray *)weekDays
@@ -115,7 +128,7 @@
             for (NSDictionary* schedule in schedules)
             {
                 NSString* days = schedule[@"days"];
-                NSRange dayRange = [days rangeOfString:[NSString stringWithFormat:@"%d",[self currentDayOfWeek]]];
+                NSRange dayRange = [days rangeOfString:[NSString stringWithFormat:@"%d", self.selectedDay]];
                 if (dayRange.location != NSNotFound)
                 {
                     NSArray* startTimes = [schedule[@"schedule"] objectForKey:startStation.stopId];
@@ -125,9 +138,9 @@
                     {
                         if ([time floatValue] > [self lowerBoundForHour:self.selectedTime] && [time floatValue] < [self upperBoundForHour:self.selectedTime])
                         {
-                            [result addObject:@{@"trainId" : train.signature,
-                                                @"startTime" : time,
-                                                @"endTime" : [endTimes objectAtIndex:index]}];
+                            [result addObject:@{@"duration" : [self durationForDepartureTime:[time floatValue] arrivalTime:[[endTimes objectAtIndex:index] floatValue]],
+                                                @"startTime" : [self stringFromTimeInterval:[time floatValue]],
+                                                @"endTime" : [self stringFromTimeInterval:[[endTimes objectAtIndex:index] floatValue]]}];
                         }
                         index++;
                     }
@@ -162,25 +175,47 @@
     }
 }
 
+- (NSString*)stringFromTimeInterval:(NSTimeInterval)timeInterval
+{
+    NSInteger integerTimeInterval = (NSInteger)timeInterval;
+    NSInteger minutes = (integerTimeInterval / 60) % 60;
+    NSInteger hours = (integerTimeInterval / 3600);
+    NSDateFormatter* formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"HH:mm"];
+    NSDate* date = [formatter dateFromString:[NSString stringWithFormat:@"%02i:%02i", hours, minutes]];
+    [formatter setDateFormat:@"hh:mm a"];
+    return [formatter stringFromDate:date];
+}
+
+- (NSString*)durationForDepartureTime:(NSTimeInterval)departureTime arrivalTime:(NSTimeInterval)arrivalTime
+{
+    NSTimeInterval durationInterval = arrivalTime - departureTime;
+    NSInteger integerdurationInterval = (NSInteger)durationInterval;
+    NSInteger minutes = integerdurationInterval / 60;
+    NSString* result = [NSString stringWithFormat:@"%d\nMIN",minutes];
+    return result;
+}
+
 - (NSTimeInterval)lowerBoundForHour:(NSInteger)hour
 {
-    return hour * 60.0;
+    return hour * 3600.0;
 }
 
 - (NSTimeInterval)upperBoundForHour:(NSInteger)hour
 {
-    return (hour + 1) * 60 - 1;
+    return (hour + 1) * 3600 - 1;
 }
 
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@""] || [keyPath isEqualToString:@""] || [keyPath isEqualToString:@""] || [keyPath isEqualToString:@""])
+    if ([keyPath isEqualToString:@"selectedTime"] || [keyPath isEqualToString:@"selectedDay"] || [keyPath isEqualToString:@"fromStation"] || [keyPath isEqualToString:@"toStation"])
     {
         if ((self.fromStation != nil && self.toStation != nil))
         {
             _trips = nil;
+            [self.delegate shouldUpdateTrips];
         }
     }
 }
