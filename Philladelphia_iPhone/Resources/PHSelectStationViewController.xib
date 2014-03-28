@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PHSelectStationViewController">
+            <connections>
+                <outlet property="tableView" destination="zuE-2i-c0j" id="idI-KN-Ikw"/>
+                <outlet property="view" destination="7If-3p-e3W" id="N5U-mT-Axh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="7If-3p-e3W">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zuE-2i-c0j">
+                    <rect key="frame" x="1" y="1" width="168" height="318"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.29029608874875257" green="0.46628174535044919" blue="0.74262595663265307" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="168" id="NAO-yh-72A"/>
+                        <constraint firstAttribute="height" constant="318" id="zSd-G3-CAE"/>
+                    </constraints>
+                    <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6cm-YY-Ndk"/>
+                        <outlet property="delegate" destination="-1" id="jv2-S6-Ah2"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="zuE-2i-c0j" secondAttribute="bottom" constant="1" id="5yS-eY-d3B"/>
+                <constraint firstAttribute="centerY" secondItem="zuE-2i-c0j" secondAttribute="centerY" id="UcF-E7-KcM"/>
+                <constraint firstAttribute="centerX" secondItem="zuE-2i-c0j" secondAttribute="centerX" id="eVv-G4-QOS"/>
+                <constraint firstItem="zuE-2i-c0j" firstAttribute="top" secondItem="7If-3p-e3W" secondAttribute="top" constant="1" id="nxL-8h-DLz"/>
+                <constraint firstAttribute="trailing" secondItem="zuE-2i-c0j" secondAttribute="trailing" constant="1" id="tc0-Lp-1cK"/>
+                <constraint firstItem="zuE-2i-c0j" firstAttribute="leading" secondItem="7If-3p-e3W" secondAttribute="leading" constant="1" id="uh8-9t-Tkf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
