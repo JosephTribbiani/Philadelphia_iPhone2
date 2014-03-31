@@ -25,7 +25,7 @@
 
 @implementation PHSelectLineViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -74,17 +74,17 @@
 
 #pragma mark - TableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.lines count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell.textLabel setText:[[self.lines objectAtIndex:indexPath.row] name]];
@@ -93,7 +93,7 @@
 
 #pragma mark - TableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     self.selectedLine = self.lines[indexPath.row];
     [self performSegueWithIdentifier:@"showScheduleSegue" sender:self];
@@ -101,7 +101,7 @@
 
 #pragma mark -
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showScheduleSegue"])
     {
