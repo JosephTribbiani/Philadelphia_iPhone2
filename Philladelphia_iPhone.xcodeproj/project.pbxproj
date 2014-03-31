@@ -53,7 +53,6 @@
 		D80D63BF18E336DF00BC9676 /* PHWeekDaysCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D80D63BE18E336DF00BC9676 /* PHWeekDaysCollectionViewCell.m */; };
 		D80D63C118E33E0A00BC9676 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D80D63C018E33E0A00BC9676 /* back.png */; };
 		D80D63C618E343D500BC9676 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D80D63C518E343D500BC9676 /* refresh.png */; };
-		D80E25FC18E41E8500F0F390 /* PHSelectStationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80E25FB18E41E8500F0F390 /* PHSelectStationTableViewController.m */; };
 		D80E260018E42A6F00F0F390 /* PHSelectStationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80E25FF18E42A6F00F0F390 /* PHSelectStationViewController.xib */; };
 		D80E260318E42B7200F0F390 /* PHSelectStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80E260218E42B7200F0F390 /* PHSelectStationViewController.m */; };
 		D80E260E18E4477800F0F390 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80E261018E4477800F0F390 /* Localizable.strings */; };
@@ -154,8 +153,6 @@
 		D80D63BE18E336DF00BC9676 /* PHWeekDaysCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHWeekDaysCollectionViewCell.m; path = Sources/PHWeekDaysCollectionViewCell.m; sourceTree = "<group>"; };
 		D80D63C018E33E0A00BC9676 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/Images/back.png; sourceTree = "<group>"; };
 		D80D63C518E343D500BC9676 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Resources/Images/refresh.png; sourceTree = "<group>"; };
-		D80E25FA18E41E8500F0F390 /* PHSelectStationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSelectStationTableViewController.h; sourceTree = "<group>"; };
-		D80E25FB18E41E8500F0F390 /* PHSelectStationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSelectStationTableViewController.m; sourceTree = "<group>"; };
 		D80E25FF18E42A6F00F0F390 /* PHSelectStationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PHSelectStationViewController.xib; path = Resources/PHSelectStationViewController.xib; sourceTree = "<group>"; };
 		D80E260118E42B7200F0F390 /* PHSelectStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PHSelectStationViewController.h; path = Sources/PHSelectStationViewController.h; sourceTree = "<group>"; };
 		D80E260218E42B7200F0F390 /* PHSelectStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PHSelectStationViewController.m; path = Sources/PHSelectStationViewController.m; sourceTree = "<group>"; };
@@ -298,8 +295,6 @@
 		D80D631E18E303F400BC9676 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D80E25FA18E41E8500F0F390 /* PHSelectStationTableViewController.h */,
-				D80E25FB18E41E8500F0F390 /* PHSelectStationTableViewController.m */,
 				D80D637918E3072C00BC9676 /* PHSelectLineViewController.h */,
 				D80D637A18E3072C00BC9676 /* PHSelectLineViewController.m */,
 				D80E260118E42B7200F0F390 /* PHSelectStationViewController.h */,
@@ -559,7 +554,6 @@
 				D80D637E18E3074700BC9676 /* PHScheduleViewController.m in Sources */,
 				D80D632F18E3056D00BC9676 /* PHLine.m in Sources */,
 				D80D62F318E3032600BC9676 /* main.m in Sources */,
-				D80E25FC18E41E8500F0F390 /* PHSelectStationTableViewController.m in Sources */,
 				D80D63AC18E30B9300BC9676 /* AFURLResponseSerialization.m in Sources */,
 				D80D63B118E30B9300BC9676 /* UIButton+AFNetworking.m in Sources */,
 				D80D633C18E3058300BC9676 /* PHLine+Create.m in Sources */,
