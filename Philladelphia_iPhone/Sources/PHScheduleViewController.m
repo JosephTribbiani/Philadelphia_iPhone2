@@ -111,7 +111,7 @@
     return _selectedWeekdayIndexes;
 }
 
-- (PHScheduleModel *)model
+- (PHScheduleModel*)model
 {
     if (_model == nil)
     {

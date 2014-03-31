@@ -166,10 +166,15 @@
                         BOOL isActual = [self currentTimeIntervalSinceMidnight] < [time floatValue];
                         if ([time floatValue] > [self lowerBoundForHour:self.selectedTime] && [time floatValue] < [self upperBoundForHour:self.selectedTime])
                         {
-                            [result addObject:@{@"duration" : [self durationForDepartureTime:[time floatValue] arrivalTime:[[endTimes objectAtIndex:index] floatValue]],
-                                                @"startTime" : [self stringFromTimeInterval:[time floatValue]],
-                                                @"endTime" : [self stringFromTimeInterval:[[endTimes objectAtIndex:index] floatValue]],
-                                                @"isActual" : @(isActual)}];
+                            NSString* duration = [self durationForDepartureTime:[time floatValue] arrivalTime:[[endTimes objectAtIndex:index] floatValue]];
+                            NSString* startTime = [self stringFromTimeInterval:[time floatValue]];
+                            NSString* endTime = [self stringFromTimeInterval:[[endTimes objectAtIndex:index] floatValue]];
+                            NSNumber* isActualNumber = @(isActual);
+                            
+                            [result addObject:@{@"duration" : duration,
+                                                @"startTime" : startTime,
+                                                @"endTime" : endTime,
+                                                @"isActual" : isActualNumber}];
                         }
                         index++;
                     }
@@ -208,7 +213,7 @@
 {
     NSInteger integerTimeInterval = (NSInteger)timeInterval;
     NSInteger minutes = (integerTimeInterval / 60) % 60;
-    NSInteger hours = (integerTimeInterval / 3600);
+    NSInteger hours = (integerTimeInterval / 3600) % 24;
     NSDateFormatter* formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"HH:mm"];
     NSDate* date = [formatter dateFromString:[NSString stringWithFormat:@"%02i:%02i", hours, minutes]];
