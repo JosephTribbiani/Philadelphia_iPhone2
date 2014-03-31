@@ -51,6 +51,15 @@
     return [hourString integerValue];
 }
 
+- (NSTimeInterval)currentTimeIntervalSinceMidnight
+{
+    NSDate* currentDate = [NSDate date];
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
+    NSDate* midnightDate = [calendar dateFromComponents:components];
+    return [currentDate timeIntervalSinceDate:midnightDate];
+}
+
 - (NSInteger)currentDayOfWeek
 {
     NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -69,6 +78,24 @@
         currentDay = 0;
     }
     return currentDay;
+}
+
+- (NSInteger)dayFromSelectedDay
+{
+    NSInteger day = 0;
+    if (self.selectedDay == 2)
+    {
+        day = 6;
+    }
+    else if (self.selectedDay == 1)
+    {
+        day = 5;
+    }
+    else
+    {
+        day = 0;
+    }
+    return day;
 }
 
 - (NSArray *)weekDays
@@ -128,7 +155,7 @@
             for (NSDictionary* schedule in schedules)
             {
                 NSString* days = schedule[@"days"];
-                NSRange dayRange = [days rangeOfString:[NSString stringWithFormat:@"%d", self.selectedDay]];
+                NSRange dayRange = [days rangeOfString:[NSString stringWithFormat:@"%d", [self dayFromSelectedDay]]];
                 if (dayRange.location != NSNotFound)
                 {
                     NSArray* startTimes = [schedule[@"schedule"] objectForKey:startStation.stopId];
@@ -136,11 +163,13 @@
                     NSUInteger index = 0;
                     for (NSNumber* time in startTimes)
                     {
+                        BOOL isActual = [self currentTimeIntervalSinceMidnight] < [time floatValue];
                         if ([time floatValue] > [self lowerBoundForHour:self.selectedTime] && [time floatValue] < [self upperBoundForHour:self.selectedTime])
                         {
                             [result addObject:@{@"duration" : [self durationForDepartureTime:[time floatValue] arrivalTime:[[endTimes objectAtIndex:index] floatValue]],
                                                 @"startTime" : [self stringFromTimeInterval:[time floatValue]],
-                                                @"endTime" : [self stringFromTimeInterval:[[endTimes objectAtIndex:index] floatValue]]}];
+                                                @"endTime" : [self stringFromTimeInterval:[[endTimes objectAtIndex:index] floatValue]],
+                                                @"isActual" : @(isActual)}];
                         }
                         index++;
                     }

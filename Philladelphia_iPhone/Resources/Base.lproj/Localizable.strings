@@ -7,3 +7,4 @@
 */
 
 "stationPlaceholder" = "<select station>";
+"noTrips" = "There are no trips for selected time. Please, try another one.";

@@ -13,6 +13,6 @@
 @property (nonatomic, copy) NSString* departureTime;
 @property (nonatomic, copy) NSString* arrivalTime;
 @property (nonatomic, copy) NSString* duration;
-
+@property BOOL isActual;
 
 @end

@@ -9,6 +9,7 @@
 #import "PHWeekDaysCollectionViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kFontName @"DINCondensed-Bold"
 #define kFontSize 20
 
 @interface PHWeekDaysCollectionViewCell()
@@ -39,11 +40,16 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"selected"];
+}
+
 - (void)setTitle:(NSString *)title
 {
     _title = title;
     UIColor* color = self.isSelected ? [UIColor colorWithRed:74.0/255 green:120.0/255 blue:190.0/255 alpha:1] : [UIColor whiteColor];
-    NSAttributedString* attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:@"DINCondensed-Bold" size:kFontSize],
+    NSAttributedString* attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:kFontName size:kFontSize],
                                                                                                         NSForegroundColorAttributeName : color}];
     [self.titleLabel setAttributedText:attributedTitle];
 }
@@ -53,7 +59,7 @@
     if ([keyPath isEqualToString:@"selected"])
     {
         UIColor* color = self.isSelected ? [UIColor colorWithRed:74.0/255 green:120.0/255 blue:190.0/255 alpha:1] : [UIColor whiteColor];
-        NSAttributedString* attributedTitle = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:@{NSFontAttributeName: [UIFont fontWithName:@"DINCondensed-Bold" size:kFontSize],
+        NSAttributedString* attributedTitle = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:@{NSFontAttributeName: [UIFont fontWithName:kFontName size:kFontSize],
                                                                                                                            NSForegroundColorAttributeName : color}];
         [self.titleLabel setAttributedText:attributedTitle];
     }

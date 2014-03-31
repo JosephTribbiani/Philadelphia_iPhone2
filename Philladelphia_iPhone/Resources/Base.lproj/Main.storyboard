@@ -148,14 +148,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="departure time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IME-Io-67y">
-                                                            <rect key="frame" x="20" y="11" width="177" height="21"/>
+                                                            <rect key="frame" x="48" y="18" width="118" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="arrival time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wX-kp-xWw">
-                                                            <rect key="frame" x="20" y="53" width="177" height="21"/>
+                                                            <rect key="frame" x="48" y="54" width="116" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -259,6 +259,12 @@
                                             <action selector="switchFromToStations:" destination="Lqb-am-cKT" eventType="touchUpInside" id="JyN-ga-lX3"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noTripLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TY0-Gy-Zrb">
+                                        <rect key="frame" x="20" y="208" width="280" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.29199445564659027" green="0.46900971004602104" blue="0.74697066326530615" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -268,6 +274,7 @@
                     <navigationItem key="navigationItem" id="3Nh-JN-d7T"/>
                     <connections>
                         <outlet property="hoursCollectionView" destination="xVK-Z6-RWt" id="zYx-nC-bqE"/>
+                        <outlet property="noTripsLabel" destination="TY0-Gy-Zrb" id="4eK-tD-Nkb"/>
                         <outlet property="selectFromStationButton" destination="vqs-rI-TYv" id="HtD-tO-Qfi"/>
                         <outlet property="selectToStationButton" destination="XfZ-kO-Uoe" id="Anx-8a-5Qb"/>
                         <outlet property="tripCollectionView" destination="QUJ-aG-5WV" id="s9U-ts-pEd"/>
